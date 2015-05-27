@@ -26,50 +26,21 @@ namespace PE92
         static void Main(string[] args)
         {
             //initialize the known cases
-            var Endings = new Dictionary<int, int>();
-            Endings.Add(1,1);
-            Endings.Add(44,1);
-            Endings.Add(32,1);
-            Endings.Add(13,1);
-            Endings.Add(10,1);
-            Endings.Add(85,89);
-            Endings.Add(89,89);
-            Endings.Add(145,89);
-            Endings.Add(42,89);
-            Endings.Add(20,89);
-            Endings.Add(4,89);
-            Endings.Add(16,89);
-            Endings.Add(37,89);
-            Endings.Add(58,89);
-
-            var current = 2;
+            var array = new int[10000000];
+            array[1] = 1;
+            array[89] = 89;
             const int maxInt = 10000000;
-            while (current < maxInt)
+            for (int current = 2; current < maxInt; current++)
             {
-                if (Endings.ContainsKey(current))
+                var x = SquareAndAdd(current);
+                while (array[x] == 0)
                 {
-                    current++;
-                    continue;
+                    x = SquareAndAdd(x);
                 }
-                var current2 = current;
-                while (current2 != 1 && current2 != 89)
-                {
-                    if (Endings.ContainsKey(current2))
-                    {
-                        current2 = Endings[current2];
-                    }
-                    else
-                    {
-                        current2 = SquareAndAdd(current2);                        
-                    }
-                }
-                Endings.Add(current,current2);
-                current++;
-                Console.WriteLine(current);
+                array[current] = array[x];
             }
 
-            Console.WriteLine(Endings.Count(x => x.Value == 89));
-            Console.WriteLine(Endings.Count(x => x.Value == 1));
+            Console.WriteLine(array.Count(x => x == 89));
             Console.WriteLine("Done");
             Console.ReadLine();            
         }
