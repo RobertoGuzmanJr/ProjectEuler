@@ -1,0 +1,27 @@
+SOLUTION
+
+We want to know how many instances exist where:
+
+x^N = M and the number of digits in M is N.
+
+Another way to say that the number of digits in M is N is to say that:
+
+(N-1) <= LOG10(M) < N
+
+But we have that
+
+N*LOG10(x) = LOG10(M)
+
+So that:
+
+(N-1) <= N*LOG10(x) < N
+-->
+
+(N-1)/N <= LOG10(x) < 1 --> 1-(1/N) <= LOG10(x) < 1
+
+Now, the right hand side gives us that x must be less than 10. So possible
+values for x are 1,2,3,4,5,6,7,8 and 9.
+
+To solve, simply calculate the LOG10 for each of these. Then evaluate the 
+inequality for values of N >= 1 and see which ones it holds for. The sum is
+your answer!
