@@ -53,17 +53,20 @@ namespace PE81
                 g.Nodes.Add(nodeArray[i]);
             }
 
+            var totalPathCost = g.Nodes[0].value;   //initialize to the starting node's value
             var results = g.DijkstrasAlgorithm(g.Nodes[0]);
-            var s = "";
-            foreach (var pair in results)
-            {
-                s += pair.Key.value + ":" + pair.Value + ";";
+            totalPathCost += results.Last().Value;
+            Console.WriteLine(totalPathCost);
+            //var s = "";
+            //foreach (var pair in results)
+            //{
+            //    s += pair.Key.value + ":" + pair.Value + ";";
                 //s += pair.Value + ";";
-            }
+            //}
             
             //Console.WriteLine("This is the start!");
-            Console.WriteLine(s);
-            Console.WriteLine(g.Nodes[0].value);
+            //Console.WriteLine(s);
+            //Console.WriteLine(g.Nodes[0].value);
 
                 //create the nodes
                 //var n11 = new Node(131);
