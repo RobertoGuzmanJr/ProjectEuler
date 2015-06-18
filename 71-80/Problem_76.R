@@ -7,7 +7,7 @@ Pentagonal <- function(n) {return(n*(3*n-1)/2)}
 #	P(n) = SUM(k != 0) (-1)^(k-1)*P(n - p_k)
 # where p_k is the kth pentagonal number
 
-Upper = 101
+Upper = 101 #index starts at 0, so we need to assume that results[1] is the number of ways to write 0, so we go to 101.
 results = (1:Upper)*0
 results[1] = 1
 
@@ -24,4 +24,4 @@ for(i in 2:Upper)
 	results[i] = S	
 }
 
-results[101] - 1
+results[101] - 1	#subtract 1 since one of these is illegal (100 by itself).
