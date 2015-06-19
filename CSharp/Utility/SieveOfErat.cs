@@ -1,20 +1,22 @@
-// Build a Sieve of Eratosthenes.
-private bool[] MakeSieve(int max)
-{
-    // Make an array indicating whether numbers are prime.
-    bool[] is_prime = new bool[max + 1];
-    for (int i = 2; i <= max; i++) is_prime[i] = true;
-
-    // Cross out multiples.
-    for (int i = 2; i <= max; i++)
-    {
-        // See if i is prime.
-        if (is_prime[i])
+        public static List<int> GetAllPrimesLessThan(int maxPrime)
         {
-            // Knock out multiples of i.
-            for (int j = i * 2; j <= max; j += i)
-                is_prime[j] = false;
+            var primes = new List<int>() { 2 };
+            var maxSquareRoot = Math.Sqrt(maxPrime);
+            var eliminated = new BitArray(maxPrime + 1);
+
+            for (int i = 3; i <= maxPrime; i += 2)
+            {
+                if (!eliminated[i])
+                {
+                    primes.Add(i);
+                    if (i < maxSquareRoot)
+                    {
+                        for (int j = i * i; j <= maxPrime; j += 2 * i)
+                        {
+                            eliminated[j] = true;
+                        }
+                    }
+                }
+            }
+            return primes;
         }
-    }
-    return is_prime;
-}
