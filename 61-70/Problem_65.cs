@@ -11,6 +11,7 @@ namespace PE65
 {
     class Program
     {
+        #see explanation for how this works in the comment.
         public static Tuple<BigInteger, BigInteger> ComputeNthConvergent(int[] coefficientList)
         {
             BigInteger h_0 = 0;
