@@ -1,0 +1,34 @@
+Let the outer nodes be denoted X1, X2, X3, X4, and X5, where X1 is the node at 1 o clock.
+Then, the remaining nodes can be labeled clockwise, starting at noon, as X6, X7, X8, X9, X10.
+
+This means that if designate a sum, S, then we have the following equations that must hold for all final assignments:
+
+X1 + X7 + X8 = S
+X2 + X8 + X9 = S
+X3 + X9 + X10 = S
+X4 + X10 + X6 = S
+X5 + X6 + X7 = S
+
+We also get the following "candidate chains." If X1 is the smallest of the outer set, then the number will be:
+
+X1_X7_X8_X2_X8_X9_X3_X9_X10_X4_X10_X6_X5_X6_X7
+
+if X2 is the smallest, then the first three digits are permuted to the end:
+
+X2_X8_X9_X3_X9_X10_X4_X10_X6_X5_X6_X7_X1_X7_X8
+
+if X3 is the smallest:
+
+X3_X9_X10_X4_X10_X6_X5_X6_X7_X1_X7_X8_X2_X8_X9
+
+if X4:
+
+X4_X10_X6_X5_X6_X7_X1_X7_X8_X2_X8_X9_X3_X9_X10
+
+if X5:
+
+X5_X6_X7_X1_X7_X8_X2_X8_X9_X3_X9_X10_X4_X10_X6
+
+Since we are combining 15 nodes to give us our final number and we want a 16 digit number, it means that 10 must be assigned to one of the outer nodes, since they each appear only once. Since this is symmetric, we should be able to assign X1 = 10 and keep that permanent. From there, we can examine the possibilities with a for loop.
+
+Once we have a combination that works, we identify the smallest of the 5 outer nodes and then append the number chain that is based on it to the list of candidates.
