@@ -1,0 +1,29 @@
+import math
+num_solutions_1 = 0
+num_solutions_2 = 0
+num_solutions_3 = 0
+solutions = []
+for x1 in range(0,51):
+    for x2 in range(0,51):
+        for y1 in range(0,51):
+            for y2 in range(0,51):
+                if x1 + y1 != 0 and x2 + y2 != 0 and not(x1 == x2 and y1 == y2):
+                    L1 = math.sqrt(x1**2 + y1**2)
+                    L2 = math.sqrt(x2**2 + y2**2)
+                    L3 = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+                    if (L1 > L2 and L1 >= L3) or (L1 >= L2 and L1 > L3):
+                        if x2**2 + y2**2 == x1*x2 + y1*y2:
+                            num_solutions_1 += 1
+                            solutions.append("{0}{1}{2}{3}".format(x1,y1,x2,y2))
+                    elif (L2 > L1 and L2 >= L3) or (L2 >= L1 and L2 > L3):
+                        if x1**2 + y1**2 == x1*x2 + y1*y2:
+                            num_solutions_2 += 1
+                            solutions.append("{0}{1}{2}{3}".format(x1,y1,x2,y2))
+                    elif (L3 > L1 and L3 >= L2) or (L3 >= L1 and L3 > L2):
+                        if x1*x2 == -1*y1*y2:
+                            num_solutions_3 += 1
+                            solutions.append("{0}{1}{2}{3}".format(x1,y1,x2,y2))
+print(num_solutions_1)
+print(num_solutions_2)
+print(num_solutions_3)
+print(int(num_solutions_1/2 + num_solutions_2/2 + num_solutions_3/2))

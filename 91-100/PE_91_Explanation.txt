@@ -1,0 +1,31 @@
+Given (x1,y1) and (x2,y2), we need a test to determine whether the triangle formed by these two points and the origin is a right triangle or not.
+
+the length of 1 leg is:
+
+L1 = sqrt(x1^2 + y1^2)
+L2 = sqrt(x2^2 + y2^2)
+L3 = sqrt((x2-x1)^2 + (y2-y1)^2)
+
+Now, here is the algorithm to check that it is a right triangle.
+
+1) Identify the longest leg. There are three possibilities.
+
+If L1 is the longest, then we want to check:
+
+L1^2 = L2^2 + L3^2 --> x1^2 + y1^2 = x2^2 + y2^2 + (x2-x1)^2 + (y2-y1)^2 --> x1^2 + y1^2 - x2^2 - y2^2 = x2^2 - 2x1x2 + x1^2 + y2^2 -2y1y2 + y1^2
+
+--> 2x2^2 - 2x1x2 + 2y2^2 - 2y1y2 = 0 --> (x2^2 + y2^2) = x1x2 + y1y2
+
+If L2 is the longest, then we want to check:
+
+L2^2 = L1^2 + L3^2 --> x2^2 + y2^2 = x1^2 + y1^2 + (x2-x1)^2 + (y2-y1)^2 --> x2^2 + y2^2 - x1^2 - y1^2 = x2^2 - 2x1x2 + x1^2 + y2^2 -2y1y2 + y1^2
+
+--> 2x1^2 - 2x1x2 + 2y1^2 - 2y1y2 = 0 --> (x1^2 + y1^2) = x1x2 + y1y2
+
+If L3 is the longest, then we want to check:
+
+L3^2 = L1^2 + L2^2 -->(x2-x1)^2 + (y2-y1)^2 = x1^2 + y1^2 + x^2 + y2^2 --> x2^2 - 2x1x2 + x1^2 + y2^2 - 2y1y2 + y1^2 = x1^2 + y1^2 + x^2 + y2^2
+
+--> 2x1x2 + 2y1y2 = 0 or x1x2 = -y1y2
+
+so now we have three criteria
